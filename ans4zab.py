@@ -90,6 +90,7 @@ class CallbackModule(CallbackBase):
         self.debugInit(host)
         self.traceLog("address zabbix=" + self.address)
         self.traceLog("   port zabbix=" + str(self.port))
+        self.traceLog(" Ansible result " + str(res))
         self.traceLog(" Sending " + key + "=" +  value)
         try:
           packet = [
@@ -102,23 +103,26 @@ class CallbackModule(CallbackBase):
         finally:
           self.debugClose()
 
-    def runner_on_failed(self, host, res, ignore_errors=False):
-        self.sendZabb("ansible_result","failed",host,self._dump_results(res))
+       def runner_on_failed(self, host, res, ignore_errors=False):
+        self.sendZabb("ansible_failed","1",host,self._dump_results(res))
+        self.sendZabb("ansible_unreachable","0",host,self._dump_results(res))
 
     def runner_on_ok(self,host, res):
-        self.sendZabb("ansible_result","ok",host,self._dump_results(res))
+        self.sendZabb("ansible_failed","0",host,self._dump_results(res))
+        self.sendZabb("ansible_unreachable","0",host,self._dump_results(res))
 
     def runner_on_skipped(self, host, item=None):
-        self.sendZabb("ansible_result","skipped",host,"skipped")
+        self.sendZabb("ansible_skipped","1",host,"skipped")
+        self.sendZabb("ansible_unreachable","0",host,self._dump_results(res))
 
     def runner_on_unreachable(self, host, res):
-        self.sendZabb("ansible_result","unreachable",host,self._dump_results(res))
+        self.sendZabb("ansible_unreachable","1",host,self._dump_results(res))
 
     def runner_on_async_failed(self, host, res, jid):
-        self.sendZabb("ansible_result","async_failed",host,self._dump_results(res))
+        self.sendZabb("ansible_async_failed","1",host,self._dump_results(res))
 
     def playbook_on_import_for_host(self, host, imported_file):
-        self.sendZabb("ansible_result","import_for_host",host,imported_file)
+        self.sendZabb("ansible_import4host",imported_file,host,imported_file)
 
     def playbook_on_not_import_for_host(self, host, missing_file):
-        self.sendZabb("ansible_result","playbook not imported",host,missing_file)
+        self.sendZabb("ansible_notimport4host",missing_file,host,missing_file)
