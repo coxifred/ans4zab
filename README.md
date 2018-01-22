@@ -33,6 +33,15 @@ You need to install py-zabbix (pip install py-zabbix)
   # Zabbix side    
   
   You need to configure template, items and triggers into zabbix interface.
+   
+  Items:
   
-  [ans4zab](https://github.com/coxifred/ans4zab/blob/master/zabbix_ansible/zabbix_item.jpg?raw=true)
+  ![zabbix_items](https://github.com/coxifred/ans4zab/blob/master/zabbix_ansible/zabbix_item.jpg "zabbix_items")
       
+  Triggers:
+  
+  ![zabbix_triggers](https://github.com/coxifred/ans4zab/blob/master/zabbix_ansible/zabbix_trigger.jpg "zabbix_triggers")
+  
+  Main page:
+  
+  ![zabbix_mp](https://github.com/coxifred/ans4zab/blob/master/zabbix_ansible/zabbix_playbook.jpg "zabbix_mp")
