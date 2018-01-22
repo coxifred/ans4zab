@@ -34,5 +34,5 @@ You need to install py-zabbix (pip install py-zabbix)
   
       You need to configure zabbix, to add these items
       
-      ![ans4zab](https://github.com/coxifred/ans4zab/blob/master/zabbix_ansible/zabbix_item.jpg?raw=true)
+      [ans4zab](https://github.com/coxifred/ans4zab/blob/master/zabbix_ansible/zabbix_item.jpg?raw=true)
       
