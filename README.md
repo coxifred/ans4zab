@@ -45,3 +45,6 @@ You need to install py-zabbix (pip install py-zabbix)
   Main page:
   
   ![zabbix_mp](https://github.com/coxifred/ans4zab/blob/master/zabbix_ansible/zabbix_playbook.jpg "zabbix_mp")
+
+  or you can import template zbx_export_templates_ansible.xml (present in root of this repo)
+  
