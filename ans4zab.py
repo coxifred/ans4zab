@@ -92,16 +92,19 @@ class CallbackModule(CallbackBase):
         self.traceLog("   port zabbix=" + str(self.port))
         self.traceLog(" Ansible result " + str(res))
         self.traceLog(" Sending " + key + "=" +  value)
-        try:
-          packet = [
+        servers=self.address.split( )
+        for server in servers:
+          self.traceLog("Sending to:" + str(server))
+          try:
+            packet = [
                     ZabbixMetric(host, key, value),
                    ]
-          result = ZabbixSender(self.address,self.port).send(packet)
-          self.traceLog("Result is:" + str(result))
-        except Exception as e:
-          self.traceLog("   /!\ Error:" + str(e))
-        finally:
-          self.debugClose()
+            result = ZabbixSender(server,self.port).send(packet)
+            self.traceLog("Result is:" + str(result))
+          except Exception as e:
+            self.traceLog("   /!\ Error:" + str(e))
+          finally:
+           self.debugClose()
   
     def runner_on_failed(self, host, res, ignore_errors=False):
         self.sendZabb("ansible.playbook.failed","1",host,self._dump_results(res))
