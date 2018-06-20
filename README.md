@@ -20,7 +20,7 @@ You need to install py-zabbix (pip install py-zabbix)
    
       This one indicates zabbix server address
       
-      ```export ZABBIX_SERVER=myzabbixserver.com``` mandatory !
+      ```export ZABBIX_SERVER=myzabbixserver.com``` mandatory, could receive mulitple zabbix_server use space separator =server1 server2
       
       This one incidates zabbix server port (default is 10051)
       
