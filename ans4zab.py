@@ -16,7 +16,7 @@ DOCUMENTATION = '''
       - This plugin logs ansible-playbook and ansible runs to a zabbix server
     options:
       server:
-        description: zabbix server that will receive the event
+        description: zabbix servers that will receive the event (use space separator)
         env:
         - name: ZABBIX_SERVER
         default: localhost
